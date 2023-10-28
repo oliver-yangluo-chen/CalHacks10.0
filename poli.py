@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 
-app = Flask(__name)
+app = Flask(__name__)
 
 @app.route('/get_stock_suggestions', methods=['POST'])
 def get_stock_suggestions():
