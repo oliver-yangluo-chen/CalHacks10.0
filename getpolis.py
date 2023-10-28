@@ -4,6 +4,7 @@ import pandas as pd
 file_path = 'congress-trading-all.xlsx'
 
 # Read the Excel file
+'''
 try:
     df = pd.read_excel(file_path)
     print(df)
@@ -11,3 +12,17 @@ except FileNotFoundError:
     print(f"File not found at path: {file_path}")
 except Exception as e:
     print(f"An error occurred: {e}")
+'''
+
+def getallnames():
+    pass
+
+def getnamerows():
+    try:
+        df = pd.read_excel(file_path)
+        print(type(df))
+    except:
+        print("bruh")
+
+getnamerows()
+
