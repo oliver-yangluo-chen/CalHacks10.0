@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PoliPortfolio</title>
+    <style>
+        body {
+            background-color: rgb(136, 136, 136);
+            font-family: 'Signifier and Söhne', sans-serif;
+            color: white;
+        }
+        #header {
+            text-align: left;
+        }
+        #logo {
+            font-weight: bold;
+            font-size: large;
+        }
+        #nav {
+            text-align: right;
+        }
+        #nav a {
+            text-decoration: none;
+            color: rgb(248, 77, 77);
+            margin: 0 10px;
+        }
+        #content {
+            text-align: center; /* Center the content */
+        }
+        #content h1 {
+            font-weight: bold;
+            opacity: 1; /* Set initial opacity to 1 to keep text visible */
+            white-space: nowrap; /* Prevent text from wrapping */
+            overflow: hidden; /* Hide overflowing text */
+            animation: typewriter 4s steps(50) forwards; /* Define typewriter animation */
+            margin: 0 auto; /* Center the text horizontally */
+        }
+        table {
+            width: 65%; /* Set the table width to 75% of the viewport */
+            margin: 0 auto; /* Center the table horizontally */
+            border-collapse: separate; /* Separate table borders */
+        }
+        td {
+            background-color: rgb(35, 35, 35);
+            padding: 20px;
+            border: 5px solid rgb(255, 197, 197); /* Add a white border around each column */
+            border-radius: 15px; /* Add rounded corners to each row */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a shadow behind each row */
+            transition: border-color 0.3s; /* Add a transition for the border color change */
+        }
+        td:hover {
+            border-color: #d80000; /* Change border color on hover */
+        }
+        .circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: white;
+        }
+        tr {
+            margin-bottom: 50px; /* Increase the margin to create more space between rows */
+        }
+        .fade-in {
+            animation: fade-in 1s ease-in-out forwards;
+            opacity: 0;
+        }
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <a id="logo" href="#">PoliPortfolio</a>
+        <div id="nav">
+            <a id="corruption" href="#">Corruption</a>
+            <a id="stocks" href="#">Stocks</a>
+            <a id="about" href="#">About</a>
+        </div>
+    </div>
+    <div id="content">
+        <h1>
+            <span class="line1">Politicians are CORRUPT.</span>
+            <br>
+            <span class="line2">We show you WHO.</span>
+        </h1>
+    </div>
+    <table>
+        <tr class="fade-in">
+            <td>
+                <div class="circle">
+                    <!-- You can add an image here -->
+                </div>
+                <span>Ro Khanna</span>
+            </td>
+        </tr>
+        <tr class="fade-in">
+            <td>
+                <div class="circle">
+                    <!-- You can add an image here -->
+                </div>
+                <span>Zoe Lofgren</span>
+            </td>
+        </tr>
+        <!-- Repeat for other rows -->
+    </table>
+    <script>
+        // JavaScript for triggering the fade-in effect on scroll
+        const rows = document.querySelectorAll('.fade-in');
+
+        function fadeInOnScroll() {
+            rows.forEach((row) => {
+                if (isElementInViewport(row)) {
+                    row.style.animationPlayState = 'running';
+                }
+            });
+        }
+
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+            );
+        }
+
+        window.addEventListener('scroll', fadeInOnScroll);
+    </script>
+</body>
+</html>
