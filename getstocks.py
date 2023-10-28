@@ -32,8 +32,8 @@ def nextyear(date: str):
 
 
 def getprice(code: str, date: str):
-    mydata = nasdaqdatalink.get(code, start_date=date, end_date=nextyear(date)) #has data every january, april, july, october
-    #return mydata
+    mydata = nasdaqdatalink.get(code, start_date=date, end_date="2023-01-01") #has data every january, april, july, october
+    return mydata
     return mydata.at[nextdate(date), 'Value']
 
 
