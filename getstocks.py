@@ -31,14 +31,29 @@ def nextyear(date: str):
 
 
 
-def getprice(code: str, date: str):
-    mydata = nasdaqdatalink.get(code, start_date=date, end_date="2023-01-01") #has data every january, april, july, october
-    return mydata
-    return mydata.at[nextdate(date), 'Value']
+def getprice(ticker: str, date: str):
+    #mydata = nasdaqdatalink.get(code, start_date=date, end_date="2023-01-01") #has data every january, april, july, october
+    #return mydata
+    #return mydata.at[nextdate(date), 'Value']
+
+    mydata = nasdaqdatalink.get("WIKI/"+ticker, start_date=date, end_date=nextyear(date))
+    return mydata.iloc[0]['Close']
+
+def getlatestprice(ticker: str):
+    mydata = nasdaqdatalink.get("WIKI/"+ticker)
+    return mydata.iloc[-1]['Close']
 
 
-code = "FRED/GDP"
-date = "2020-12-26"
+#code = "FRED/GDP"
+date = "2005-03-23"
 #print(nextdate(date))
 
-print(getprice(code, date))
+#print(getprice(code, date))
+
+#print(getlatestprice(code))
+
+
+#print(getprice("AAPL", date))
+#print(getlatestprice("AAPL"))
+#print(getlatestprice("APPL"))
+#print(mydata)
