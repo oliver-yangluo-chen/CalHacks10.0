@@ -5,6 +5,7 @@ def profit(shares, earned, spent):
     for k in shares.keys():
         earned += getlatestprice(k)
     print(earned, spent)
+    if spent == 0: return 0
     return (earned-spent)/spent
 
 def getreturn(name: str):
@@ -17,8 +18,8 @@ def getreturn(name: str):
         ticker = rows.at[index, 'Ticker']
         transaction = rows.at[index, 'Transaction']
         amount = rows.at[index, 'Amount']
-        print(earned, spent)
         date = rows.at[index, 'TransactionDate']
+        print(ticker, date)
         try:
             price = getprice(ticker, date)
             print(price)
@@ -36,4 +37,4 @@ def getreturn(name: str):
         
 
 
-print(getreturn("Robert J. Wittman"))
+print(getreturn("Richard Burr"))
