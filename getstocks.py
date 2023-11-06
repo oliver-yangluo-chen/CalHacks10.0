@@ -41,12 +41,12 @@ def getprice(ticker: str, date: str):
 
 def getlatestprice(ticker: str):
     mydata = nasdaqdatalink.get("WIKI/"+ticker)
-    print(mydata.iloc[-1])
+    #print(mydata.iloc[-1])
     return mydata.iloc[-1]['Close']
 
 def test():
     mydata = nasdaqdatalink.get_table('ZACKS/FC', ticker='AAPL')
-    print(mydata)
+    #print(mydata)
 
 test()
 

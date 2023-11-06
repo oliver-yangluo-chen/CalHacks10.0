@@ -15,7 +15,13 @@ except Exception as e:
 '''
 
 def getallnames():
-    pass
+    try:
+        df = pd.read_excel(file_path)
+        names = df['Representative'].tolist()
+        names = set(names)
+        return names
+    except:
+        print("bruh")
 
 def getnamerows(name: str):
     try:
@@ -23,6 +29,8 @@ def getnamerows(name: str):
         return(df.loc[df['Representative'] == name])
     except:
         print("bruh")
+
+#print(getallnames())
 
 #print(getnamerows("Robert J. Wittman"))
 

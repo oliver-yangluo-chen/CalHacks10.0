@@ -4,7 +4,7 @@ from getpolis import *
 def profit(shares, earned, spent):
     for k in shares.keys():
         earned += getlatestprice(k)
-    print(earned, spent)
+    #print(earned, spent)
     if spent == 0: return 0
     return (earned-spent)/spent
 
@@ -19,10 +19,10 @@ def getreturn(name: str):
         transaction = rows.at[index, 'Transaction']
         amount = rows.at[index, 'Amount']
         date = rows.at[index, 'TransactionDate']
-        print(ticker, date)
+        #print(ticker, date)
         try:
             price = getprice(ticker, date)
-            print(price)
+            #print(price)
         except:
             continue
         if ticker not in shares:
@@ -37,4 +37,3 @@ def getreturn(name: str):
         
 
 
-print(getreturn("Richard Burr"))
