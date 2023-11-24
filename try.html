@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inside The Hill</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a1a1a;
+            color: white;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .card-container {
+            width: 100%;
+            max-width: 600px;
+        }
+        .card {
+            background-color: #0000ff;
+            margin: 10px 0;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+        .card:hover {
+            transform: scale(1.03);
+        }
+        .circle {
+            width: 50px;
+            height: 50px;
+            background-color: #fff;
+            border-radius: 50%;
+        }
+        .name {
+            flex-grow: 1;
+            margin-left: 20px;
+            color: white;
+        }
+        .number {
+            color: white;
+            font-weight: bold;
+            border: 2px solid #00ff9d;
+            padding: 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Inside The Hill</h1>
+    </div>
+    <div class="card-container" id="card-container">
+        <!-- Cards will be inserted here by JavaScript -->
+    </div>
+    <script>
+        // Function to fetch and parse CSV data
+        function fetchCsvData(url, callback) {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', url);
+            xhr.onload = () => {
+                if (xhr.status === 200) {
+                    const allText = xhr.responseText;
+                    callback(null, allText);
+                } else {
+                    callback(new Error(xhr.statusText), null);
+                }
+            };
+            xhr.onerror = () => {
+                callback(new Error('Network Error'), null);
+            };
+            xhr.send();
+        }
+
+        // Function to parse CSV text
+        function parseCsv(csvText) {
+            const lines = csvText.trim().split('\n');
+            return lines.map(line => {
+                const [name, number] = line.split(',').map(item => item.trim());
+                return { name, number };
+            });
+        }
+
+        // Function to create a card for each entry
+        function createCard(name, number) {
+            const card = document.createElement('div');
+            card.className = 'card';
+
+            const circle = document.createElement('div');
+            circle.className = 'circle';
+
+            const nameElement = document.createElement('div');
+            nameElement.className = 'name';
+            nameElement.textContent = name;
+
+            const numberElement = document.createElement('div');
+            numberElement.className = 'number';
+            numberElement.textContent = number;
+
+            card.appendChild(circle);
+            card.appendChild(nameElement);
+            card.appendChild(numberElement);
+
+            return card;
+        }
+
+        // Function to populate the cards
+        function populateCards(data) {
+            const container = document.getElementById('card-container');
+            data.forEach(({ name, number }) => {
+                container.appendChild(createCard(name, number));
+            });
+        }
+
+        // Fetch and populate data on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchCsvData('namereturn.csv', (error, csvText) => {
+                if (error) {
+                    return console.error('Error loading CSV data:', error);
+                }
+                const data = parseCsv(csvText);
+                populateCards(data);
+            });
+        });
+    </script>
+</body>
+</html>
