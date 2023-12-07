@@ -1,4 +1,4 @@
-# CalHacks10.0
+# CalHacks10.0: Inside the Hill
  
 Politicians are corrupt. That's a fact. We show you WHO.
 
